@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="15_2_To_do_list.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container1">
+        <div class="todolist_div">
+            <div class="heading_div">
+                <h3>To-do-List</h3>
+            </div>
+            <div class="buttons">
+                <input type="button" value="SPECIFY TASK" onclick="specify_task()">
+                <input type="button" value="DELETE TASK" onclick="delete_task()">
+                <input type="button" value="MARK AS COMPLETE" onclick="complete_task()">     
+            </div>
+            <div class="input_div_task" id="input_div_task_id">
+
+            </div>
+            <div class="table_of_list" id="table_of_list_id">
+
+            </div>
+        </div>
+
+    </div>
+    <script>
+        var text="";
+        var text1="";
+        var cnt=0;
+        var cnt1=0;
+        var arr=[];
+        
+        function specify_task(){
+            text=`<input type='text' placeholder='Type your task here' id='input_task_id'><input type='button' value='ADD TASK' onclick='add_task()' id='add_task_id'>`;
+            document.getElementById("input_div_task_id").innerHTML=text;
+        }
+        function delete_task(){
+            for(let i=1;i<=cnt;i++){
+                if(arr.includes(i))
+                continue;
+                var flag=document.getElementById(`checkbox${i}`).checked;
+                console.log(flag);
+                if(flag==true){
+                    document.getElementById(`div_check${i}`).innerHTML=""; 
+                    arr.push(i); 
+                }
+            }
+        }
+        function add_task(){
+            cnt=cnt+1;
+            cnt1=cnt1+1;
+            var val=document.getElementById("input_task_id").value;
+            console.log(val);
+            text1=`<div id='div_check${cnt1}'><input type='checkbox' id='checkbox${cnt1}'> ${val}</div><br>`;
+
+             var val2=document.getElementById("table_of_list_id");
+             val2.innerHTML+=text1;
+        }
+                function complete_task(){
+                    for(let i=1;i<=cnt;i++){
+                if(arr.includes(i))
+                continue;
+                var flag=document.getElementById(`checkbox${i}`).checked;
+                console.log(flag);
+                if(flag==true){
+                    document.getElementById(`div_check${i}`).style.backgroundColor="greenyellow"; 
+                    document.getElementById(`div_check${i}`).style.color="purple"; 
+                    document.getElementById(`div_check${i}`).style.fontWeight="bold" 
+                }
+            }
+                }
+    </script>
+</body>
+
+</html>
